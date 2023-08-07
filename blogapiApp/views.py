@@ -15,4 +15,13 @@ def getAllPosts(request):
     get_posts= Post.objects.all()
     serializer= PostSerializer(get_posts, many=True) # In order to Many fields to be serialized
     return Response(serializer.data)
-   
+
+@api_view(['GET','POST'])
+def createNewPost(request):
+    data = request.data
+    serializer = PostSerializer(data=data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response({"Success":"The Post is succesfully created"},status=201)
+    else:
+        return Response(serializer.errors, status=400)
