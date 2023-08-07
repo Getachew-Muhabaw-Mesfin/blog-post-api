@@ -5,4 +5,5 @@ urlpatterns = [
     path('', views.index),
     path('all-posts/', views.getAllPosts),
     path('create-new-post/',views.createNewPost),
+    path('delete-post/', views.deletePost),
 ]
