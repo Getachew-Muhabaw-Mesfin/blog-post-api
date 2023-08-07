@@ -7,4 +7,5 @@ urlpatterns = [
     path('create-new-post/',views.createNewPost),
     path('delete-post/', views.deletePost),
     path('get-post/', views.getPost),
+    path('update-post/', views.updatePost),
 ]

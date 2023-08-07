@@ -45,3 +45,19 @@ def getPost(request):
         return Response(serializer.data,status=200)
     except Post.DoesNotExist:
         return Response({'Error':'This Post is Not found'})
+    
+@api_view(['PUT'])
+def updatePost(request):
+    post_id = request.data.get('post_id')
+    get_new_title= request.data.get('new_title')
+    get_new_content = request.data.get('new_content')
+    try:
+        post = Post.objects.get(id=post_id)
+        if get_new_title:
+            post.title = get_new_title
+        if get_new_content:
+            post.content = get_new_content
+        post.save()
+        return Response({'Success':'The Post is Updated succesfully! '},status=200)
+    except Post.DoesNotExist:
+        return Response({'ERROR':'The Post Does not exist!'}, status=400)
